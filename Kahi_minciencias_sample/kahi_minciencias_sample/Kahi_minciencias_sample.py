@@ -225,7 +225,7 @@ class Kahi_minciencias_sample(KahiBase):
                 f"INFO: Processing gruplac groups, found {len(group_ids)} unique groups")
         for group_id in group_ids:
             group = self.cols_in["gruplac_groups"].find_one(
-                {"cod_grupo_gr": group_id})
+                {"cod_grupo_gr": group_id}, sort=[("ano_convo", -1)])
             if group:
                 if self.cols_out["gruplac_groups"].count_documents({"cod_grupo_gr": group_id}) == 0:
                     self.cols_out["gruplac_groups"].insert_one(group)
